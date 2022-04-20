@@ -21,9 +21,9 @@ const suspectsArray = [
   image: "http://www.radiotimes.com/uploads/images/Original/111967.jpg",
   color: "white"},
 
-{firstName: "Victor"
-lastName: "Plum"
-occupation: "Designer"
+{firstName: "Victor",
+lastName: "Plum",
+occupation: "Designer",
 age: 22,
 description: "Billionaire video game designer",
 image: "https://66.media.tumblr.com/ee7155882178f73b3781603f0908617c/tumblr_phhxc7EhPJ1w5fh03_540.jpg",
@@ -95,20 +95,43 @@ const weaponsArray = [
 
 
 // ITERATION 2
-const allArrays = [...weaponsArray, ...suspectsArray, ...roomsArray];
-function selectRandom() {
-    
- return allArrays[Math.floor(Math.random(allArrays.length))] 
+function selectRandom(arr) {
+  const rand =  Math.floor(Math.random() * len);
+  const result = arr[rand]
+return result
 }
-selectRandom(suspectsArray)
 
-function pickMystery() {}
+
+function pickMystery(){
+
+const res = {
+  suspect: null,
+  weapon: null,
+  room: null
+}
+
+const weaponsRand = selectRandom(weaponsArray)
+const suspectsRand = selectRandom(suspectsArray)
+const roomRand = selectRandom(roomsArray)
+
+res.room = roomRand
+res.weapon = weaponsRand
+res.suspect = suspectsRand
+return res
+}
 
 
 // ITERATION 3
 
-function revealMystery() {}
+function revealMystery(object) {
+  const firstName = object.suspect.firstName;
+  const lastName = object.suspect.lastName;
+  const weapon = object.weapon.name;
+  const room = object.room.name;
+  return `${firstName} ${lastName} killed Mr. Boddy using the ${weapon} in the ${room}.`
+}
 
+console.log(pickMystery(revealMystery()));
 
 
 // The following is required to make unit tests work.
